@@ -16,7 +16,7 @@ class TabLink {
       this.cards = document.querySelectorAll(`.card[data-tab="${this.tabData}"]`);
     }
 
-     // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
+    // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
     this.cards = Array.from(this.cards).map(card => new TabCard(card));
 
     // Add a click event that invokes this.selectTab
@@ -24,24 +24,23 @@ class TabLink {
   }
 
   selectTab(){
-
     // Select all elements with the .tab class on them
-    // const tabs = document.querySelectorAll();
+    const tabs = document.querySelectorAll('.tab');
     
     // Iterate through the NodeList removing the .active-tab class from each element
-    // tabs.forEach()
+    tabs.forEach(tab => tab.classList.remove('active-tab'));
 
     // Select all of the elements with the .card class on them
-    // const cards = ;
+    const cards = document.querySelectorAll('.card');
 
     // Iterate through the NodeList setting the display style each one to 'none'
-    // cards.forEach()
+    cards.forEach(card => {card.style.display = 'none';});
     
     // Add a class of ".active-tab" to this.tabElement
-    // this.tabElement;
+    this.tabElement.classList.add('active-tab');
   
     // Notice we are looping through the this.cards array and invoking selectCard() from the TabCard class. Just un-comment the code and study what is happening here.
-    // this.cards.forEach(card => card.selectCard());
+    this.cards.forEach(card => card.selectCard());
   }
 }
 
