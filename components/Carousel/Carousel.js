@@ -13,7 +13,6 @@ class Carousel {
 
   show(image) {
     image.style.display = "block";
-    console.log(this.index);
   }
 
   hide(image) {
@@ -21,27 +20,27 @@ class Carousel {
   }
 
   previous() {
-
-  }
-
-  next() {
     this.hide(this.current);
-    this.index++
+    if (this.index < 1) {
+      this.index = this.images.length - 1;
+    } else {
+      this.index--;
+    }
     this.current = this.images[this.index];
     this.show(this.current);
   }
 
-  go() {
-    console.log("Go works!");
+  next() {
+    this.hide(this.current);
+    if (this.index < this.images.length - 1) {
+      this.index++;
+    } else {
+      this.index = 0;
+    }
+    this.current = this.images[this.index];
+    this.show(this.current);
   }
+
 }
 let carousel = document.querySelector(".carousel");
 const runCarousel = new Carousel(carousel);
-runCarousel.go();
-
-/* If You've gotten this far, you're on your own! Although we will give you some hints:
-    3. Create a current index
-    4. Those buttons are gonna need some click handlers.
-    5. Think of how you would animate this compoennt. Make the cards slide in and out, or fade. It's up to you!
-    6. Have fun!
-*/
