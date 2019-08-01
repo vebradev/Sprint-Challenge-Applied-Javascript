@@ -1,14 +1,46 @@
 class Carousel {
+  constructor(carousel) {
+    this.carousel = carousel;
+    this.left = document.querySelector(".left-button");
+    this.right = document.querySelector(".right-button");
+    this.images = Array.from(document.querySelectorAll(".carousel img"));
+    this.index = 0;
+    this.current = this.images[this.index];
+    this.show(this.current);
+    this.left.addEventListener("click", () => this.previous());
+    this.right.addEventListener("click", () => this.next());
+  }
+
+  show(image) {
+    image.style.display = "block";
+  }
+
+  hide(image) {
+    image.style.display = "none";
+  }
+
+  previous() {
+    this.hide(this.current);
+    if (this.index < 1) {
+      this.index = this.images.length - 1;
+    } else {
+      this.index--;
+    }
+    this.current = this.images[this.index];
+    this.show(this.current);
+  }
+
+  next() {
+    this.hide(this.current);
+    if (this.index < this.images.length - 1) {
+      this.index++;
+    } else {
+      this.index = 0;
+    }
+    this.current = this.images[this.index];
+    this.show(this.current);
+  }
 
 }
-
-let carousel = document.querySelector();
-
-/* If You've gotten this far, you're on your own! Although we will give you some hints:
-    1. You will need to grab a reference to the carousel, and in it grab the left and right buttons
-    2. You will need to grab a reference to all of the images
-    3. Create a current index
-    4. Those buttons are gonna need some click handlers.
-    5. Think of how you would animate this compoennt. Make the cards slide in and out, or fade. It's up to you!
-    6. Have fun!
-*/
+let carousel = document.querySelector(".carousel");
+const runCarousel = new Carousel(carousel);
